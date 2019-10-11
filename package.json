@@ -1,0 +1,14 @@
+{
+  "name": "curl_c",
+  "version": "1.0.0",
+  "description": "# DEMO",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "bin": {
+    "curl_c": "./bin/curl_c.js"
+  },
+  "author": "Mimura",
+  "license": "ISC"
+}
