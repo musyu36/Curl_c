@@ -10,5 +10,8 @@
     "curl_c": "./bin/curl_c.js"
   },
   "author": "Mimura",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
 }
