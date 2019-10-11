@@ -1,4 +1,4 @@
-# LRU
+# CURL_clone
 
 # DEMO
 
@@ -19,4 +19,4 @@
 
 # License
 
-"LRU" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
+"CURL_clone" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
