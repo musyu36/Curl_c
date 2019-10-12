@@ -52,7 +52,7 @@ argv.option([
         short: 'd',
         type: 'string',
         description: 'HTTPメソッドの指定',
-        example: "'curl_c -X POST url' or 'curl_c --request POST url'"
+        example: "'curl_c -X POST -d 'key=value' url' or 'curl_c -X POST --data 'key=value' url'"
     }
 ]);
 
