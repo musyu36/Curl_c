@@ -11,6 +11,19 @@ function writeFile(path, data) {
     });
 }
 
+//大文字変換
+function capitalizeFirstLetter(str) {
+    if (str.indexOf('-') != -1) {
+        var str_1 = str.slice(0, str.indexOf('-'));
+        var str_2 = str.slice(str.indexOf('-') + 1);
+        return str_1.charAt(0).toUpperCase() + str_1.slice(1) + '-' + str_2.charAt(0).toUpperCase() + str_2.slice(1);
+    }   
+    else {
+        return str.charAt(0).toUpperCase() + str.slice(1);    
+    }
+}
+
+
 
 argv.option([
     {
@@ -19,19 +32,42 @@ argv.option([
         type: 'path',
         description: '取得したデータを指定したファイルに出力する',
         example: "'curl_c --output file url' or 'curl_c -o file url'"
+    },
+    {
+        name: 'verbose',
+        short: 'v',
+        type: 'boolean',
+        description: '詳細をログ出力',
+        example: "'curl_c --verbose url' or 'curl_c -v url'"
     }
 ]);
 
-// 引数を取得
+// 引数をオブジェクトで取得
 var arg = argv.run();
 
-// URL,通信種類設定
+// URL,HTTPメソッドの指定
 var options = {
-    url: arg['targets'][0],
+    url: process.argv[process.argv.length - 1],
     method: 'GET'
 }
 
-request(options, function (error, response, body) {
+request(options, function (error, res, body) {
+    // 詳細ログの出力
+    if (arg['options']['verbose']) {
+        console.log("* Conencted to" + res['request']['uri']['host'], "port", res['request']['uri']['port']);
+        
+        header_sp = res['req']['_header'].split(/\n/);
+        for (var i = 0; i < 2; i++){
+            console.log('> ' + capitalizeFirstLetter(header_sp[i]));
+        }
+        console.log('> ');
+
+        for (var key in res.headers) {
+            console.log('< ' + capitalizeFirstLetter(key) + ': ' + res.headers[key]);
+        }
+        console.log('< ');
+    }
+
     //　出力先のファイルが指定されていなければ標準出力
     if (typeof arg['options']['output'] == 'undefined') {
         console.log(body);
