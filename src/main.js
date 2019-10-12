@@ -39,16 +39,30 @@ argv.option([
         type: 'boolean',
         description: '詳細をログ出力',
         example: "'curl_c --verbose url' or 'curl_c -v url'"
+    },
+    {
+        name: 'method',
+        short: 'X',
+        type: 'string',
+        description: 'HTTPメソッドの指定',
+        example: "'curl_c -X POST url'"
     }
 ]);
 
 // 引数をオブジェクトで取得
 var arg = argv.run();
 
-// URL,HTTPメソッドの指定
+// -Xオプションが指定されていれば指定されたHTTPメソッドを格納
+if (arg['options']['method']) {
+    var method_set = arg['options']['method'];
+} else {
+    var method_set = 'GET';
+}
+
+// URL,HTTPメソッドの設定
 var options = {
     url: process.argv[process.argv.length - 1],
-    method: 'GET'
+    method: method_set
 }
 
 request(options, function (error, res, body) {
