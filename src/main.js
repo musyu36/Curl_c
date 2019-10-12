@@ -41,11 +41,11 @@ argv.option([
         example: "'curl_c --verbose url' or 'curl_c -v url'"
     },
     {
-        name: 'method',
+        name: 'request',
         short: 'X',
         type: 'string',
         description: 'HTTPメソッドの指定',
-        example: "'curl_c -X POST url'"
+        example: "'curl_c -X POST url' or 'curl_c --request POST url'"
     }
 ]);
 
@@ -53,8 +53,8 @@ argv.option([
 var arg = argv.run();
 
 // -Xオプションが指定されていれば指定されたHTTPメソッドを格納
-if (arg['options']['method']) {
-    var method_set = arg['options']['method'];
+if (arg['options']['request']) {
+    var method_set = arg['options']['request'];
 } else {
     var method_set = 'GET';
 }
