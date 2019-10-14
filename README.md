@@ -1,5 +1,7 @@
 # CURL_clone
 
+"CURL_clone" is a clone of curl command.
+
 # DEMO
 
 # Features
@@ -8,7 +10,18 @@
 
 # Installation
 
+```bash
+npm install request
+npm install argv
+npm install fs
+npm install nslookup
+```
+
 # Usage
+
+```bash
+curl_c url
+```
 
 # Note
 
