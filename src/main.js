@@ -87,7 +87,7 @@ async function main() {
             nslookup(options['url'], function (err, addrs) {
                 IP = addrs;
             });
-            await wait(0.3);
+            await wait(1);
         }
 
         // POSTリクエストとしてフォームを送信
@@ -112,7 +112,7 @@ async function main() {
             // -vオプションが指定されていれば詳細ログを標準出力
             if (arg['options']['verbose']) {
                 // IPアドレスを取得できていればドメイン名と共に表示
-                if (IP) {
+                if (IP.length) {
                     console.log("* Connected to " + res['request']['uri']['host'], "(", IP[0], ")", "port", res['request']['uri']['port']);
                 } else {
                     console.log("* Connected to " + res['request']['uri']['host'], "port", res['request']['uri']['port']);
